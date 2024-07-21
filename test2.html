@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<h1>The Element Object</h1>
+<h2>The getBoundingClientRect() Method</h2>
+<style>
+    body {
+        position: relative;
+        scroll-behavior: smooth;
+    }
+
+    #demo {
+        top: 0;
+        position: fixed;
+        height: 200px;
+        display: flex;
+        right: 0;
+        background-color: yellow;
+    }
+
+    #first {
+        height: 100vh;
+        background-color: black;
+        color: white
+    }
+
+    #second {
+        height: 100vh;
+        background-color: blue;
+    }
+
+    .second__div{
+        animation: animate-profile-picture 800ms 200ms  backwards;
+    }
+    .third__div{
+        animation: animate-profile-picture 800ms 200ms  backwards;
+    }
+
+    #third {
+        height: 70vh;
+        background-color: black;
+    }
+    @keyframes animate-profile-picture {
+    0%{
+        opacity: 0;
+        transform: translateX(-100vw);
+    }
+    
+    100%
+    {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+    #myDiv {
+        color: white;
+    }
+</style>
+
+<body id="body">
+    <div id="first">
+        <div id="myDiv">
+            Scroll to display the bounding client rect of the element with the border.
+        </div>
+        <!-- <div style="width:1000px; height:1000px;"></div> -->
+    </div>
+    <div id="second"  class="second">
+        <div id="myDiv">
+            Scroll to display the bounding client rect of the element with the border.
+        </div>
+        <!-- <div style="width:1000px; height:1000px;"></div> -->
+    </div>
+    <div id="third">
+        <div id="myDiv">
+            Scroll to display the bounding client rect of the element with the border.
+        </div>
+        <!-- <div style="width:1000px; height:1000px;"></div> -->
+    </div>
+    <div id="forth">
+        <div id="myDiv">
+            Scroll to display the bounding client rect of the element with the border.
+        </div>
+        <!-- <div style="width:1000px; height:1000px;"></div> -->
+    </div>
+    <p id="demo"></p>
+
+    <script>
+        
+        const checkIsVisible = (element) => {
+    data = element.split(","); 
+
+for (let i = 0; i < data.length; i++) {
+
+    result = data[i].split("|"); 
+  
+    footer = document.getElementById(result[1])
+    if (!footer.classList.contains(result[0])) {
+        const rect = footer.getBoundingClientRect();
+    
+    if(rect.top <= document.documentElement.clientHeight){
+        footer.classList += ' ' +result[0]
+    }
+}
+
+  } 
+    
+};
+
+document.addEventListener('scroll', () => {
+    // checkIsVisible();
+    checkIsVisible('second__div|second,third__div|third');
+})
+
+    </script>
+
+</body>
+
+</html>
